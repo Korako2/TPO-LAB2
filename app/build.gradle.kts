@@ -41,7 +41,6 @@ application {
     mainClass.set("tpo.lab2.AppKt")
 }
 
-tasks.named<Test>("test") {
-    // Use JUnit Platform for unit tests.
+tasks.withType<Test> {
     useJUnitPlatform()
 }
