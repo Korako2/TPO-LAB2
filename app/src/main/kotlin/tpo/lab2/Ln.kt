@@ -1,8 +1,9 @@
 package tpo.lab2
 
 import java.math.BigDecimal
-import java.math.BigDecimal.ONE
-import java.math.BigDecimal.ZERO
+import java.math.BigDecimal.*
+import java.math.BigInteger.TWO
+import java.math.MathContext
 import java.math.RoundingMode
 
 // TODO: Вероятно, нужно ввести ограничение по кол-ву итераций, когда он не может достичь нужной точности
@@ -18,19 +19,39 @@ class Ln {
             return ZERO
         }
 
-        // почему у РедГрая какая-то усложненная реализация? Вот простая:
         var result = ZERO
         var n = ONE
-        var term = x - ONE
-        var sign = -ONE
-        var prevX = x - ONE
         // начинаем со второго члена ряда
-        while (term.abs() > BigDecimal("1E-${eps.scale()+1}")) {
-            result += term
-            n += ONE
-            prevX *= (x - ONE)
-            term = (prevX * sign).divide(n, eps.scale() * 2, RoundingMode.HALF_EVEN)
-            sign = -sign
+        if ((x - ONE).abs() <= ONE) {
+            var term = x - ONE
+            var prevResult = result
+            var xMinusOnePowered = x - ONE
+            var sign = -ONE
+            while ((result - prevResult).abs() > BigDecimal("1E-${eps.scale() + 1}") || n == ONE) {
+                prevResult = result
+                result += term
+                n += ONE
+                xMinusOnePowered *= (x - ONE)
+                term = (xMinusOnePowered * sign).divide(n, MathContext.DECIMAL128.precision, RoundingMode.HALF_UP)
+                sign = -sign
+            }
+            return result;
+            // more precision
+            // (result + prevResult).divide(2.toBigDecimal(), eps.scale(), RoundingMode.HALF_EVEN)
+        } else {
+            var prevXMinusOnePowered = x - ONE
+            var prevXPowered = x
+            var prevResult = result
+            while ((result - prevResult).abs() > BigDecimal("1E-${eps.scale() + 1}") || n == ONE) {
+                val term = prevXMinusOnePowered.divide(n, MathContext.DECIMAL128.precision, RoundingMode.HALF_UP)
+                    .divide(prevXPowered, MathContext.DECIMAL128.precision, RoundingMode.HALF_UP)
+                prevXMinusOnePowered *= x - ONE
+                prevXPowered *= x
+                n += ONE
+                prevResult = result
+                result += term
+            }
+//            result += this.calc(x - ONE, eps);
         }
         return result.setScale(eps.scale(), RoundingMode.HALF_EVEN)
     }
