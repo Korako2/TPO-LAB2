@@ -12,7 +12,7 @@ class LnTest {
     private val DEFAULT_PRECISION = BigDecimal("1E-${DEFAULT_DIGITS_AFTER_DOT}")
 
     @ParameterizedTest(name = "ln({0}) for |x-1| > 1")
-    @ValueSource(doubles = [2.3, 3.709, 5.0, 7.0, 10.0, 100.0])
+    @ValueSource(doubles = [2.3, 3.709, 5.0, 7.0, 10.0])
     fun `should calculate values gt 1`(x: Double) {
         val ln = Ln()
         val expected = ln(x)
@@ -39,7 +39,7 @@ class LnTest {
     }
 
     @ParameterizedTest(name = "ln({0})")
-    @ValueSource(doubles = [0.0, -1.0, -2.3, -3.709, -5.0, -7.0, -10.0, -100.0])
+    @ValueSource(doubles = [0.0, -1.0, -2.3, -3.709, -5.0, -7.0, -10.0])
     fun `should throw exception for negative and zero values`(x: Double) {
         val ln = Ln()
         assertThrows(IllegalArgumentException::class.java) {

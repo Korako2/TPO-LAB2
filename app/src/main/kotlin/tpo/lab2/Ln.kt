@@ -9,7 +9,6 @@ import java.math.RoundingMode
 // TODO: Вероятно, нужно ввести ограничение по кол-ву итераций, когда он не может достичь нужной точности
 class Ln {
     // https://en.wikipedia.org/wiki/Natural_logarithm#Series
-    // ln(x) = sum(n=1..inf) (-1)^(n+1) * x^n / n
     fun calc(x: BigDecimal, eps: BigDecimal): BigDecimal {
         // or compareTo?
         if (x <= ZERO) {
@@ -23,6 +22,7 @@ class Ln {
         var n = ONE
         // начинаем со второго члена ряда
         if ((x - ONE).abs() <= ONE) {
+            // ln(x) = sum(n=1..inf) (-1)^(n+1) * x^n / n
             var term = x - ONE
             var prevResult = result
             var xMinusOnePowered = x - ONE
@@ -36,8 +36,6 @@ class Ln {
                 sign = -sign
             }
             return result;
-            // more precision
-            // (result + prevResult).divide(2.toBigDecimal(), eps.scale(), RoundingMode.HALF_EVEN)
         } else {
             var prevXMinusOnePowered = x - ONE
             var prevXPowered = x
@@ -51,7 +49,6 @@ class Ln {
                 prevResult = result
                 result += term
             }
-//            result += this.calc(x - ONE, eps);
         }
         return result.setScale(eps.scale(), RoundingMode.HALF_EVEN)
     }
