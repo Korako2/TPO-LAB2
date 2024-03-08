@@ -1,11 +1,15 @@
 package tpo.lab2
 
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import java.math.RoundingMode
+import kotlin.math.PI
+import kotlin.math.sin
+import kotlin.math.tan
 
 class TanTest {
     @DisplayName("Non-negative")
@@ -41,14 +45,35 @@ class TanTest {
         }
     }
 
-    @DisplayName("tan(PI/2) is undefined")
-    @Test
-    fun `test tan(PI div 2)`() {
+    @DisplayName("tan(PI/2 + PIk) is undefined")
+    @ParameterizedTest
+    @ValueSource(doubles = [PI/2, -PI/2, 75*PI/2])
+    fun `test tan(PI div 2)`(x: Double) {
         val tan = Tan()
         val eps = 1e-3.toBigDecimal()
-        val x = Math.PI.toBigDecimal().divide(2.toBigDecimal(), Math.PI.toBigDecimal().scale(), RoundingMode.HALF_EVEN)
         assertThrows(ArithmeticException::class.java) {
-            tan.calc(x, eps)
+            tan.calc(x.toBigDecimal(), eps)
         }
     }
+
+    @ParameterizedTest(name = "tan({0})")
+    @ValueSource(doubles = [0.0, 2*PI/3, -2*PI, -1001*PI/4])
+    fun `frequency of the function`(x : Double) {
+        val tan = Tan()
+        val eps = 1E-10.toBigDecimal()
+        val expected = tan(x)
+        val actual = tan.calc(x.toBigDecimal() + (PI).toBigDecimal(), eps).toDouble()
+        assertEquals(expected, actual, eps.toDouble())
+    }
+
+    @ParameterizedTest(name = "tan({0})")
+    @ValueSource(doubles = [0.0, 2*PI/3, -2*PI/6, -1001*PI/4])
+    fun `parity of the function`(x : Double) {
+        val tan = Tan()
+        val eps = 1E-10.toBigDecimal()
+        val expected = -tan(x)
+        val actual = tan.calc(-x.toBigDecimal(), eps).toDouble()
+        assertEquals(expected, actual, eps.toDouble())
+    }
+
 }
