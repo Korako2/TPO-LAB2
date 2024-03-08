@@ -1,5 +1,6 @@
 package tpo.lab2
 
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
@@ -56,6 +57,16 @@ class SinTest {
         val expected = -sin(x)
         val actual = sin.calc(-x.toBigDecimal(), eps).toDouble()
         assertEquals(expected, actual, eps.toDouble())
+    }
+
+    @ParameterizedTest(name = "sin({0})")
+    @ValueSource(doubles = [Double.NaN, Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY])
+    fun `test invalid argument`(x: Double) {
+        val sin = Sin()
+        val eps = 1e-10.toBigDecimal()
+        Assertions.assertThrows(IllegalArgumentException::class.java) {
+            sin.calc(x.toBigDecimal(), eps)
+        }
     }
 
 }
