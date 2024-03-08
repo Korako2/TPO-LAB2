@@ -12,7 +12,9 @@ class SinTest {
     fun `non-negative numbers`(x : Double) {
         val sin = Sin()
         val eps = 1E-10.toBigDecimal()
-        assertEquals(sin.calc(x.toBigDecimal(), eps).toDouble(), sin(x), eps.toDouble())
+        val expected = sin(x)
+        val actual = sin.calc(x.toBigDecimal(), eps).toDouble()
+        assertEquals(expected, actual, eps.toDouble())
     }
 
     @ParameterizedTest(name = "sin({0})")
@@ -20,7 +22,9 @@ class SinTest {
     fun `negative numbers`(x : Double) {
         val sin = Sin()
         val eps = 1E-10.toBigDecimal()
-        assertEquals(sin.calc(x.toBigDecimal(), eps).toDouble(), sin(x), eps.toDouble())
+        val expected = sin(x)
+        val actual = sin.calc(x.toBigDecimal(), eps).toDouble()
+        assertEquals(expected, actual, eps.toDouble())
     }
 
     @ParameterizedTest(name = "sin({0})")
@@ -29,6 +33,8 @@ class SinTest {
     fun `large argument numbers`(x : Double) {
         val sin = Sin()
         val eps = 1E-10.toBigDecimal()
-        assertEquals(sin.calc(x.toBigDecimal(), eps).toDouble(), sin(x), eps.toDouble())
+        val expected = sin(x)
+        val actual = sin.calc(x.toBigDecimal(), eps).toDouble()
+        assertEquals(expected, actual, eps.toDouble())
     }
 }
