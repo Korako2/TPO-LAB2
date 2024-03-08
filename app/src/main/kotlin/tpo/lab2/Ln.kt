@@ -2,7 +2,6 @@ package tpo.lab2
 
 import java.math.BigDecimal
 import java.math.BigDecimal.*
-import java.math.BigInteger.TWO
 import java.math.MathContext
 import java.math.RoundingMode
 
