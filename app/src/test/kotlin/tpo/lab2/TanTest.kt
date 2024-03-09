@@ -1,14 +1,10 @@
 package tpo.lab2
 
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import java.math.RoundingMode
 import kotlin.math.PI
-import kotlin.math.sin
 import kotlin.math.tan
 
 class TanTest {
@@ -18,7 +14,7 @@ class TanTest {
     fun `test non-negative`(x: Double) {
         val tan = Tan()
         val eps = 1e-10.toBigDecimal()
-        val expected = kotlin.math.tan(x)
+        val expected = tan(x)
         val actual = tan.calc(x.toBigDecimal(), eps)
         assertEquals(expected, actual.toDouble(), eps.toDouble())
     }
@@ -29,7 +25,7 @@ class TanTest {
     fun `test negative`(x: Double) {
         val tan = Tan()
         val eps = 1e-10.toBigDecimal()
-        val expected = kotlin.math.tan(x)
+        val expected = tan(x)
         val actual = tan.calc(x.toBigDecimal(), eps)
         assertEquals(expected, actual.toDouble(), eps.toDouble())
     }

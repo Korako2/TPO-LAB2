@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import kotlin.math.PI
-import kotlin.math.sin
 import kotlin.math.tan
 
 class CotTest {

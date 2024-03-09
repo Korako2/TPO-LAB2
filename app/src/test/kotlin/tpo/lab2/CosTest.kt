@@ -6,7 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import kotlin.math.PI
 import kotlin.math.cos
-import kotlin.math.sin
 
 class CosTest {
     @ParameterizedTest(name = "cos({0})")
