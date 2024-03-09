@@ -17,7 +17,7 @@ class Cot {
     }
 
     private fun isPointsOfVerticalDiameter(x: BigDecimal): Boolean {
-        return (PI/2).toBigDecimal().subtract(x.abs().remainder(PI.toBigDecimal().multiply(2.toBigDecimal()))).compareTo((1E-10).toBigDecimal()) <= 0 ||
-                (3*PI/2).toBigDecimal().subtract(x.abs().remainder(PI.toBigDecimal().multiply(2.toBigDecimal()))).compareTo((1E-10).toBigDecimal()) <= 0
+        return (PI/2).toBigDecimal().subtract(x.abs().remainder(PI.toBigDecimal().multiply(2.toBigDecimal()))).abs()<= (1E-10).toBigDecimal() ||
+                (3*PI/2).toBigDecimal().subtract(x.abs().remainder(PI.toBigDecimal().multiply(2.toBigDecimal()))).abs() <= (1E-10).toBigDecimal()
     }
 }
