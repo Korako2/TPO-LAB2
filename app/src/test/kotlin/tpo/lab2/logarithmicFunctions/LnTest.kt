@@ -8,7 +8,7 @@ import java.math.BigDecimal
 import kotlin.math.ln
 
 class LnTest {
-    private val DEFAULT_DIGITS_AFTER_DOT = 4
+    private val DEFAULT_DIGITS_AFTER_DOT = 10
     private val DEFAULT_PRECISION = BigDecimal("1E-${DEFAULT_DIGITS_AFTER_DOT}")
 
     @ParameterizedTest(name = "ln({0}) for |x-1| > 1")
@@ -53,6 +53,15 @@ class LnTest {
     fun `test invalid argument`(x: Double) {
         val ln = Ln()
         assertThrows(IllegalArgumentException::class.java) {
+            ln.calc(x.toBigDecimal(), DEFAULT_PRECISION)
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(doubles = [0.001, 0.00001])
+    fun `should throw exception for small values`(x: Double) {
+        val ln = Ln()
+        assertThrows(ArithmeticException::class.java) {
             ln.calc(x.toBigDecimal(), DEFAULT_PRECISION)
         }
     }
