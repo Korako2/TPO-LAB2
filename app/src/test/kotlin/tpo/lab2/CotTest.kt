@@ -63,7 +63,7 @@ class CotTest {
     }
 
     @ParameterizedTest(name = "cot({0})")
-    @ValueSource(doubles = [PI/10, 2*PI/3, -2*PI/4, -1001*PI/12])
+    @ValueSource(doubles = [PI/10, 2*PI/3, -1001*PI/12])
     fun `frequency of the function`(x : Double) {
         val cot = Cot()
         val eps = 1E-6.toBigDecimal()
@@ -73,12 +73,22 @@ class CotTest {
     }
 
     @ParameterizedTest(name = "cot({0})")
-    @ValueSource(doubles = [PI/10, 2*PI/3, -2*PI/4, -1001*PI/12])
+    @ValueSource(doubles = [PI/10, 2*PI/3, -1001*PI/12])
     fun `parity of the function`(x : Double) {
         val cot = Cot()
         val eps = 1E-10.toBigDecimal()
         val expected = -1/tan(x)
         val actual = cot.calc(-x.toBigDecimal(), eps).toDouble()
+        assertEquals(expected, actual, eps.toDouble())
+    }
+
+    @ParameterizedTest(name = "cot({0})")
+    @ValueSource(doubles = [PI/2, -PI/2, 3*PI/2, -3*PI/2, 100001*PI/2])
+    fun `check the vertical diameter points`(x : Double) {
+        val cot = Cot()
+        val eps = 1E-10.toBigDecimal()
+        val expected = 0.0
+        val actual = cot.calc(x.toBigDecimal(), eps).toDouble()
         assertEquals(expected, actual, eps.toDouble())
     }
 
