@@ -2,7 +2,6 @@ package tpo.lab2
 
 import java.math.BigDecimal
 import java.math.BigDecimal.*
-import java.math.BigInteger.TWO
 import java.math.MathContext
 import java.math.RoundingMode
 
@@ -15,8 +14,7 @@ class Ln {
             throw IllegalArgumentException("x must be positive")
         }
         if (x == ONE) {
-            return ZERO// TODO: Вероятно, нужно ввести ограничение по кол-ву итераций, когда он не может достичь нужной точности
-
+            return ZERO
         }
 
         var result = ZERO

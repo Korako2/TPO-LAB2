@@ -26,7 +26,7 @@ dependencies {
     testImplementation(libs.junit.jupiter.engine)
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testCompileOnly("org.junit.jupiter:junit-jupiter-params:5.10.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.2")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

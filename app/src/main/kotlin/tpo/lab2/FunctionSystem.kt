@@ -18,6 +18,9 @@ class FunctionSystem {
         return if (x <= BigDecimal.ZERO) {
             cot.calc(x, eps)
         } else {
+            if (x == BigDecimal.ONE) {
+                throw ArithmeticException("x cannot be 1")
+            }
             val lnX = ln.calc(x, eps)
             val log5X = log5.calc(x, eps)
             val log2X = log2.calc(x, eps)
@@ -29,6 +32,6 @@ class FunctionSystem {
             val lnX2MinusLnXDivLog5X = lnX2MinusLnX / log5X
             val lnXPlusLog2MinusLog10MulLnX2MinusLnXDivLog5X = lnXPlusLog2MinusLog10 * lnX2MinusLnXDivLog5X
             lnXPlusLog2MinusLog10MulLnX2MinusLnXDivLog5X * log3.calc(x, eps)
-        }.setScale(eps.scale(), RoundingMode.HALF_EVEN)
+        }.setScale(eps.scale(), RoundingMode.HALF_UP)
     }
 }

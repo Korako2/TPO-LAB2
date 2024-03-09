@@ -1,7 +1,7 @@
 package tpo.lab2
 
 import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import java.math.BigDecimal
@@ -46,4 +46,15 @@ class LnTest {
             ln.calc(BigDecimal(x), DEFAULT_PRECISION)
         }
     }
+
+    @DisplayName("invalid argument")
+    @ParameterizedTest(name = "ln{0})")
+    @ValueSource(doubles = [Double.NaN, Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY])
+    fun `test invalid argument`(x: Double) {
+        val ln = Ln()
+        assertThrows(IllegalArgumentException::class.java) {
+            ln.calc(x.toBigDecimal(), DEFAULT_PRECISION)
+        }
+    }
+
 }
