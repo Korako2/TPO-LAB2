@@ -2,6 +2,6 @@ package tpo.lab2
 
 interface FunctionMaxIterations {
     companion object {
-        const val MAX_ITERATIONS = 4000
+        const val MAX_ITERATIONS = 10000
     }
 }
