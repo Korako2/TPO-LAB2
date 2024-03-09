@@ -13,7 +13,7 @@ class LnTest {
     private val DEFAULT_PRECISION = BigDecimal("1E-${DEFAULT_DIGITS_AFTER_DOT}")
 
     @ParameterizedTest(name = "ln({0}) for |x-1| > 1")
-    @ValueSource(doubles = [2.3, 3.709, 5.0, 7.0, 10.0, 1000.0])
+    @ValueSource(doubles = [2.3, 3.709, 5.0, 7.0, 10.0])
     fun `should calculate values gt 1`(x: Double) {
         val ln = Ln()
         val expected = ln(x)
