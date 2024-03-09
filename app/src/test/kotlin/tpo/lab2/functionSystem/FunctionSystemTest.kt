@@ -1,4 +1,4 @@
-package tpo.lab2
+package tpo.lab2.functionSystem
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.params.ParameterizedTest

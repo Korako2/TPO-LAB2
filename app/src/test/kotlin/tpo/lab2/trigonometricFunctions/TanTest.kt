@@ -1,4 +1,4 @@
-package tpo.lab2
+package tpo.lab2.trigonometricFunctions
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName

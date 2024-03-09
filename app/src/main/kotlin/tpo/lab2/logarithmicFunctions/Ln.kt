@@ -1,4 +1,4 @@
-package tpo.lab2
+package tpo.lab2.logarithmicFunctions
 
 import java.math.BigDecimal
 import java.math.BigDecimal.*

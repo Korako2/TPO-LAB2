@@ -1,5 +1,8 @@
-package tpo.lab2
+package tpo.lab2.functionSystem
 
+import tpo.lab2.logarithmicFunctions.Ln
+import tpo.lab2.logarithmicFunctions.Log
+import tpo.lab2.trigonometricFunctions.Cot
 import java.math.BigDecimal
 import java.math.RoundingMode
 

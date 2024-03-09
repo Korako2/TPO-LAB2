@@ -1,4 +1,4 @@
-package tpo.lab2
+package tpo.lab2.trigonometricFunctions
 
 import java.math.BigDecimal
 
