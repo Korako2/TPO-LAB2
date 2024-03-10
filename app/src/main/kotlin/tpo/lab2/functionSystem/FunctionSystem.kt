@@ -10,12 +10,12 @@ class FunctionSystem {
     // desmos formulas:
     // x <= 0 : cot(x)
     // x > 0 : ((( \frac{((ln(x) ^ 2) - ln(x))}{log_5(x)} ) \cdot (ln(x) + (log_2(x) - log_{10}(x)))) \cdot log_3(x))
-    private val cot = Cot()
-    private val ln = Ln()
-    private val log2 = Log(2)
-    private val log3 = Log(3)
-    private val log5 = Log(5)
-    private val log10 = Log(10)
+    private var cot = Cot()
+    private var ln = Ln()
+    private var log2 = Log(2)
+    private var log3 = Log(3)
+    private var log5 = Log(5)
+    private var log10 = Log(10)
 
     fun calc(x: BigDecimal, eps: BigDecimal): BigDecimal {
         return if (x <= BigDecimal.ZERO) {
@@ -36,5 +36,29 @@ class FunctionSystem {
             val lnXPlusLog2MinusLog10MulLnX2MinusLnXDivLog5X = lnXPlusLog2MinusLog10 * lnX2MinusLnXDivLog5X
             lnXPlusLog2MinusLog10MulLnX2MinusLnXDivLog5X * log3.calc(x, eps)
         }.setScale(eps.scale(), RoundingMode.HALF_UP)
+    }
+
+    fun setCot(cot: Cot) {
+        this.cot = cot
+    }
+
+    fun setLn(ln: Ln) {
+        this.ln = ln
+    }
+
+    fun setLog2(log2: Log) {
+        this.log2 = log2
+    }
+
+    fun setLog3(log3: Log) {
+        this.log3 = log3
+    }
+
+    fun setLog5(log5: Log) {
+        this.log5 = log5
+    }
+
+    fun setLog10(log10: Log) {
+        this.log10 = log10
     }
 }
