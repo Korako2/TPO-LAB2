@@ -16,7 +16,8 @@ class CosIntegrationTest {
     @ParameterizedTest
     @ValueSource(doubles = [0.0, 0.5, 1.0, 10.0, 10000.0])
     fun `test non-negative`(x: Double) {
-        val cos = Cos().apply { sin = sinMock }
+        val cos = Cos()
+        cos.setSin(sinMock)
         Mockito.`when`(sinMock.calc(BigDecimal(x).plus(BigDecimal(PI/2)), eps)).thenReturn(sin(x + PI/2).toBigDecimal())
         val expected = sinMock.calc(BigDecimal(x).plus(BigDecimal(PI/2)), eps)
         val actual = cos.calc(BigDecimal(x), eps)
@@ -26,7 +27,8 @@ class CosIntegrationTest {
     @ParameterizedTest
     @ValueSource(doubles = [-0.5, -1.0, -10.0, -10000.0])
     fun `test negative`(x: Double) {
-        val cos = Cos().apply { sin = sinMock }
+        val cos = Cos()
+        cos.setSin(sinMock)
         Mockito.`when`(sinMock.calc(BigDecimal(x).plus(BigDecimal(PI/2)), eps)).thenReturn(sin(x + PI/2).toBigDecimal())
         val expected = sinMock.calc(BigDecimal(x).plus(BigDecimal(PI/2)), eps)
         val actual = cos.calc(BigDecimal(x), eps)
@@ -36,7 +38,8 @@ class CosIntegrationTest {
     @ParameterizedTest
     @ValueSource(doubles = [0.0, 2* PI /3, -2* PI, -1001* PI /2])
     fun `frequency of the function`(x : Double) {
-        val cos = Cos().apply { sin = sinMock }
+        val cos = Cos()
+        cos.setSin(sinMock)
         Mockito.`when`(sinMock.calc(BigDecimal(x).plus(BigDecimal(PI/2).plus(BigDecimal(2 * PI))), eps)).thenReturn(sin(x + PI/2 + 2 * PI).toBigDecimal())
         val expected = cos(x)
         val actual = cos.calc(BigDecimal(x).plus(BigDecimal(2*PI)), eps).toDouble()
@@ -46,7 +49,8 @@ class CosIntegrationTest {
     @ParameterizedTest
     @ValueSource(doubles = [0.0, 2* PI /3, -2* PI /6, -1001* PI /2])
     fun `parity of the function`(x : Double) {
-        val cos = Cos().apply { sin = sinMock }
+        val cos = Cos()
+        cos.setSin(sinMock)
         Mockito.`when`(sinMock.calc(BigDecimal(x).multiply(BigDecimal(-1.0)).plus(BigDecimal(PI/2)), eps)).thenReturn(sin(-x + PI/2).toBigDecimal())
         val expected = cos(x)
         val actual = cos.calc(BigDecimal(x).multiply(BigDecimal(-1.0)), eps).toDouble()
