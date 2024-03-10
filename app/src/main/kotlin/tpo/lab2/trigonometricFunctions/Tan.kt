@@ -6,8 +6,8 @@ import java.math.MathContext
 import java.math.RoundingMode
 
 class Tan: FunctionMaxIterations {
-    private val sin = Sin()
-    private val cos = Cos()
+    private var sin = Sin()
+    private var cos = Cos()
 
     override fun calc(x: BigDecimal, eps: BigDecimal): BigDecimal {
         val newEps = eps.divide(BigDecimal.TEN, eps.scale() + 1, RoundingMode.HALF_EVEN)
@@ -17,5 +17,13 @@ class Tan: FunctionMaxIterations {
         }
         return sin.calc(x, newEps).divide(cosValue, MathContext.DECIMAL128.precision, RoundingMode.HALF_EVEN)
             .setScale(eps.scale(), RoundingMode.HALF_EVEN)
+    }
+
+    fun setSin(sin: Sin) {
+        this.sin = sin
+    }
+
+    fun setCos(cos: Cos) {
+        this.cos = cos
     }
 }

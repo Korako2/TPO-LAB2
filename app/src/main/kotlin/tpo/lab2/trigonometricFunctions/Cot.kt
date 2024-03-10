@@ -6,7 +6,7 @@ import java.math.RoundingMode
 import kotlin.math.PI
 
 class Cot: FunctionMaxIterations {
-    private val tan = Tan()
+    private var tan = Tan()
 
     override fun calc(x: BigDecimal, eps: BigDecimal): BigDecimal {
         if (isPointsOfVerticalDiameter(x)) return 0.0.toBigDecimal()
@@ -20,5 +20,9 @@ class Cot: FunctionMaxIterations {
     private fun isPointsOfVerticalDiameter(x: BigDecimal): Boolean {
         return (PI/2).toBigDecimal().subtract(x.abs().remainder(PI.toBigDecimal().multiply(2.toBigDecimal()))).abs()<= (1E-10).toBigDecimal() ||
                 (3*PI/2).toBigDecimal().subtract(x.abs().remainder(PI.toBigDecimal().multiply(2.toBigDecimal()))).abs() <= (1E-10).toBigDecimal()
+    }
+
+    fun setTan(tan: Tan) {
+        this.tan = tan
     }
 }

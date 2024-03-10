@@ -39,7 +39,7 @@ class CSVWriterTest {
             }
         }, BigDecimal.ZERO, BigDecimal.TEN, BigDecimal.ONE, BigDecimal.ONE)
         val file = java.io.File("test/kotlin/tpo/lab2/csv/test.csv")
-        val expected = "0 0\n1 1\n2 2\n3 3\n4 4\n5 5\n6 6\n7 7\n8 8\n9 9\n10 10\n"
+        val expected = "x, y\n0, 0\n1, 1\n2, 2\n3, 3\n4, 4\n5, 5\n6, 6\n7, 7\n8, 8\n9, 9\n10, 10\n"
         assertEquals(expected, file.readText())
     }
 }
