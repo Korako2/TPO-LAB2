@@ -1,14 +1,15 @@
 package tpo.lab2.trigonometricFunctions
 
+import tpo.lab2.FunctionMaxIterations
 import java.math.BigDecimal
 import java.math.MathContext
 import java.math.RoundingMode
 
-class Tan {
+class Tan: FunctionMaxIterations {
     private val sin = Sin()
     private val cos = Cos()
 
-    fun calc(x: BigDecimal, eps: BigDecimal): BigDecimal {
+    override fun calc(x: BigDecimal, eps: BigDecimal): BigDecimal {
         val newEps = eps.divide(BigDecimal.TEN, eps.scale() + 1, RoundingMode.HALF_EVEN)
         val cosValue = cos.calc(x, newEps)
         if (cosValue.compareTo(BigDecimal.ZERO) == 0) {

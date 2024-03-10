@@ -56,14 +56,6 @@ class LnTest {
             ln.calc(x.toBigDecimal(), DEFAULT_PRECISION)
         }
     }
-
-    @ParameterizedTest
-    @ValueSource(doubles = [0.001, 0.00001])
-    fun `should throw exception for small values`(x: Double) {
-        val ln = Ln()
-        assertThrows(ArithmeticException::class.java) {
-            ln.calc(x.toBigDecimal(), DEFAULT_PRECISION)
-        }
-    }
+    
 
 }

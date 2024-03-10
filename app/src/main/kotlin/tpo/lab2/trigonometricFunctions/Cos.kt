@@ -1,11 +1,12 @@
 package tpo.lab2.trigonometricFunctions
 
+import tpo.lab2.FunctionMaxIterations
 import java.math.BigDecimal
 
-class Cos {
+class Cos: FunctionMaxIterations {
     private val sin = Sin()
 
-    fun calc(x: BigDecimal, eps: BigDecimal): BigDecimal {
+    override fun calc(x: BigDecimal, eps: BigDecimal): BigDecimal {
         return sin.calc(x + BigDecimal(Math.PI / 2), eps)
     }
 }

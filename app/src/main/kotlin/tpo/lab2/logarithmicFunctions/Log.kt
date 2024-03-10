@@ -1,13 +1,14 @@
 package tpo.lab2.logarithmicFunctions
 
+import tpo.lab2.FunctionMaxIterations
 import java.math.BigDecimal
 import java.math.MathContext.DECIMAL128
 import java.math.RoundingMode
 
-class Log(private val base: Int) {
+class Log(private val base: Int): FunctionMaxIterations {
     private val ln = Ln()
 
-    fun calc(x: BigDecimal, eps: BigDecimal): BigDecimal {
+    override fun calc(x: BigDecimal, eps: BigDecimal): BigDecimal {
         if (x <= BigDecimal.ZERO) {
             throw IllegalArgumentException("Function is not defined for x <= 0. x = $x")
         }

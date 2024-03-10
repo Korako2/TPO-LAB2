@@ -1,13 +1,14 @@
 package tpo.lab2.trigonometricFunctions
 
+import tpo.lab2.FunctionMaxIterations
 import java.math.BigDecimal
 import java.math.RoundingMode
 import kotlin.math.PI
 
-class Cot {
+class Cot: FunctionMaxIterations {
     private val tan = Tan()
 
-    fun calc(x: BigDecimal, eps: BigDecimal): BigDecimal {
+    override fun calc(x: BigDecimal, eps: BigDecimal): BigDecimal {
         if (isPointsOfVerticalDiameter(x)) return 0.0.toBigDecimal()
         val tanValue = tan.calc(x, eps)
         if (tanValue.compareTo(BigDecimal.ZERO) == 0) {

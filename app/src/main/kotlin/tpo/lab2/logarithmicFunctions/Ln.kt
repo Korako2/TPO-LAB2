@@ -9,7 +9,7 @@ import java.math.RoundingMode
 // TODO: Вероятно, нужно ввести ограничение по кол-ву итераций, когда он не может достичь нужной точности
 class Ln: FunctionMaxIterations {
     // https://en.wikipedia.org/wiki/Natural_logarithm#Series
-    fun calc(x: BigDecimal, eps: BigDecimal): BigDecimal {
+    override fun calc(x: BigDecimal, eps: BigDecimal): BigDecimal {
         // or compareTo?
         if (x <= ZERO) {
             throw IllegalArgumentException("x must be positive")
