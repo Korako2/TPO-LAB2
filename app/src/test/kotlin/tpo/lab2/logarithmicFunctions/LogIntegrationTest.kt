@@ -31,11 +31,11 @@ class LogIntegrationTest {
     fun `log(n, 1) is 0`(n : Int) {
         val log = Log(n)
         log.setLn(mockLn)
-        val eps = 1
-        val x = 1
-        Mockito.`when`(mockLn.calc(BigDecimal(x), BigDecimal(eps))).thenReturn(BigDecimal(0))
-        Mockito.`when`(mockLn.calc(BigDecimal(n), BigDecimal(eps))).thenReturn(ln(n.toDouble()).toBigDecimal())
-        Assertions.assertEquals(BigDecimal(0), log.calc(BigDecimal(x), BigDecimal(eps)))
+        val eps = 1.toBigDecimal()
+        val x = 1.toBigDecimal()
+        Mockito.`when`(mockLn.calc(x, eps)).thenReturn(0.toBigDecimal())
+        Mockito.`when`(mockLn.calc(n.toBigDecimal(), eps)).thenReturn(ln(n.toDouble()).toBigDecimal())
+        Assertions.assertEquals(BigDecimal(0), log.calc(x, eps))
     }
 
     @ParameterizedTest
@@ -44,8 +44,8 @@ class LogIntegrationTest {
         val log = Log(n)
         log.setLn(mockLn)
         val eps = 1e-3.toBigDecimal()
-        Mockito.`when`(mockLn.calc(eq(BigDecimal(x)), any())).thenReturn(BigDecimal(ln(x)))
-        Mockito.`when`(mockLn.calc(eq(BigDecimal(n)), any())).thenReturn(BigDecimal(ln(n.toDouble())))
+        Mockito.`when`(mockLn.calc(eq(x.toBigDecimal()), any())).thenReturn(ln(x).toBigDecimal())
+        Mockito.`when`(mockLn.calc(eq(n.toBigDecimal()), any())).thenReturn(ln(n.toDouble()).toBigDecimal())
         val expected = log(x, n.toDouble())
         val actual = log.calc(BigDecimal(x), eps)
         Assertions.assertEquals(expected, actual.toDouble(), eps.toDouble())
