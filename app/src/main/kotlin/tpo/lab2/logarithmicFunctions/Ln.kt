@@ -9,7 +9,6 @@ import java.math.RoundingMode
 class Ln: FunctionMaxIterations {
     // https://en.wikipedia.org/wiki/Natural_logarithm#Series
     override fun calc(x: BigDecimal, eps: BigDecimal): BigDecimal {
-        // or compareTo?
         if (x <= ZERO) {
             throw IllegalArgumentException("x must be positive")
         }

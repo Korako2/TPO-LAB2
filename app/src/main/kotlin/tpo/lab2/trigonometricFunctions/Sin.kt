@@ -8,7 +8,6 @@ import java.math.MathContext
 import java.math.RoundingMode
 
 class Sin: FunctionMaxIterations {
-    // divide x to get it in range (-pi, pi)
     override fun calc(x: BigDecimal, eps: BigDecimal): BigDecimal{
         val pi = BigDecimal(Math.PI)
         val two = 2.toBigDecimal()
