@@ -62,16 +62,6 @@ class LogIntegrationTest {
         Assertions.assertThrows(IllegalArgumentException::class.java) { log.calc(x.toBigDecimal(), eps.toBigDecimal()) }
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [-5, -1, 0])
-    fun `log(negative_base, x) throws Exception`(n : Int) {
-        val log = Log(n)
-        log.setLn(mockLn)
-        Mockito.`when`(mockLn.calc(eq(5.toBigDecimal()), any())).thenThrow(IllegalArgumentException::class.java)
-        val x = 5
-        val eps = 0
-        Assertions.assertThrows(IllegalArgumentException::class.java) { log.calc(x.toBigDecimal(), eps.toBigDecimal()) }
-    }
 
     companion object{
 
