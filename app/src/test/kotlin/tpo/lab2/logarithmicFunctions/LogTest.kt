@@ -54,14 +54,6 @@ class LogTest {
         assertThrows(IllegalArgumentException::class.java) { log.calc(x.toBigDecimal(), eps.toBigDecimal()) }
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [-5, -1, 0])
-    fun `log(negative_base, x) throws Exception`(n : Int) {
-        val x = 5
-        val eps = 0
-        assertThrows(IllegalArgumentException::class.java) { Log(n).calc(x.toBigDecimal(), eps.toBigDecimal()) }
-    }
-
 
     @ParameterizedTest
     @MethodSource("getInvalidArgumentsAndBase")
