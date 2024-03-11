@@ -29,6 +29,13 @@ class LogTest {
     }
 
     @ParameterizedTest
+    @ValueSource(doubles = [0.5, 1.0, 1.5, -0.5])
+    fun `log(1, n) throws Exception`(x: Double) {
+        val eps = 1
+        assertThrows(IllegalArgumentException::class.java) { Log(1).calc(x.toBigDecimal(), eps.toBigDecimal()) }
+    }
+
+    @ParameterizedTest
     @MethodSource("getNonNegativeArgumentsAndBase")
     fun `log(n, non-negative)`(n: Int, x: Double) {
         val log = Log(n)
@@ -50,10 +57,9 @@ class LogTest {
     @ParameterizedTest
     @ValueSource(ints = [-5, -1, 0])
     fun `log(negative_base, x) throws Exception`(n : Int) {
-        val log = Log(n)
         val x = 5
         val eps = 0
-        assertThrows(IllegalArgumentException::class.java) { log.calc(x.toBigDecimal(), eps.toBigDecimal()) }
+        assertThrows(IllegalArgumentException::class.java) { Log(n).calc(x.toBigDecimal(), eps.toBigDecimal()) }
     }
 
 

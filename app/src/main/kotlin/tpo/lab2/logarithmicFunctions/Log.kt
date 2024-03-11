@@ -7,7 +7,11 @@ import java.math.RoundingMode
 
 class Log(private val base: Int): FunctionMaxIterations {
     private var ln = Ln()
-
+    init {
+        if (base == 1 || base <= 0) {
+            throw IllegalArgumentException("Base of the logarithm cannot be 1.")
+        }
+    }
     override fun calc(x: BigDecimal, eps: BigDecimal): BigDecimal {
         if (x <= BigDecimal.ZERO) {
             throw IllegalArgumentException("Function is not defined for x <= 0. x = $x")

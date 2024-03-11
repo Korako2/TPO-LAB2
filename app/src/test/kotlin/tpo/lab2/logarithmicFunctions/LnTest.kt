@@ -20,7 +20,7 @@ class LnTest {
         assertEquals(expected, actual.toDouble(), DEFAULT_PRECISION.toDouble())
     }
 
-    @ParameterizedTest(name = "ln({0}) for |x-1| <= 1")
+    @ParameterizedTest(name = "ln({0}) for |x-1| < 1")
     @ValueSource(doubles = [1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9])
     fun `should calculate values for abs x-1 le 1`(x: Double) {
         val ln = Ln()
